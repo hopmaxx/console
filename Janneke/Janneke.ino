@@ -28,7 +28,6 @@ void setup() {
 
 void loop() {
 
-  
   for(int i = 0; i < cLedAmnt; i++){
     digitalWrite(cLedPins[i],HIGH);
     delay(cLedSpeed);
@@ -37,15 +36,31 @@ void loop() {
   }
   
   topRow = analogRead(cBtnUpPin) / 16;
-
+  bottomRow = analogRead(cBtnDownPin) / 16;
+  
   buttonPressed = 0;
   for(int i = 0; i < cRowAmnt; i++){
     if(topRow == cRowId[i]){
       buttonPressed = i+1;
       break;
     }//if
-  }//for
+  }//for  
 
-    
+  Serial.println(getButtonId(topRow, cRowId));
   delay(50);
 }//loop
+
+int getButtonId(int rawValue, uint8_t * rowId){
+  
+  int buttonId = 0;
+
+  for(int i = 0; i < sizeof(rowId); i++){
+    if(rawValue == rowId[i]){
+      buttonId = i+1;
+      break;
+    }//if
+  }//for 
+
+  return sizeof(rowId[2]); 
+}
+
