@@ -68,11 +68,10 @@ void loop() {
     digitalWrite(cLedPins[timeCode-1],HIGH);
   }
 
-  //see what topRow/bottomRow contains in Serial Monitor
-  //Serial.print(topRow);
-  //Serial.print(" ");
-  //Serial.println(bottomRow);
-  delay(50);
+sendTimecode(timeCode);
+
+ 
+ 
 }//loop
 
 //function assigns number to V value based on length of containing array
@@ -103,7 +102,7 @@ void flashLed (int ledId, int ledSpeed) {
 //function random flashy flashy
 void flashRandomLed(){
   
-  for(int i = 0; i < 100; i++){
+  for(int i = 0; i < 10; i++){
     int randomLed = random(12);
     ledState[randomLed] ^=1;
     digitalWrite(cLedPins[randomLed],ledState[randomLed]);
@@ -116,5 +115,17 @@ void flashRandomLed(){
   }
 
 }
- 
 
+//function sends last timecode to serial once
+void sendTimecode(int timeCode){
+  
+  static int oldTimeCode = 0;
+
+  if(timeCode > 0) {
+    if(oldTimeCode != timeCode){
+      Serial.write((byte)timeCode); 
+    }//if
+  }//if
+  oldTimeCode = timeCode;
+  
+}
