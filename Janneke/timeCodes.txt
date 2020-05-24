@@ -1,0 +1,12 @@
+1, test;
+2, janneke;
+3, bla;
+4, vier;
+5, vijf;
+6, vertalen;
+7, aansturen;
+8, doeloos_rondlopen;
+9, koffie_drinken;
+10, kletsen;
+11, henk_aaien;
+12, eten;
