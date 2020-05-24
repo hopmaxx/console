@@ -44,17 +44,6 @@ void loop() {
   topRow = getButtonId(topRow, cRowId, cRowAmnt);
   bottomRow = getButtonId(bottomRow, cRowId, cRowAmnt) + 6 * bool(bottomRow);
 
-  //turn on led if V value is read, place in array picked using topRow/bottomRow
-  /*
-   if(topRow > 0 || bottomRow > 0){
-    digitalWrite(cLedPins[topRow-1],HIGH);
-    digitalWrite(cLedPins[bottomRow-1],HIGH);
-  }else{
-    for(int i = i; i < cLedAmnt; i++){
-      digitalWrite(cLedPins[i],LOW);   
-    }
-  }*/
-
   //led flashes when pressed
   if(topRow > 0 ) { 
     digitalWrite(cLedPins[timeCode-1],LOW);    
@@ -68,15 +57,13 @@ void loop() {
     digitalWrite(cLedPins[timeCode-1],HIGH);
   }
 
-sendTimecode(timeCode);
-
- 
- 
+  sendTimecode(timeCode);
+  
 }//loop
 
 //function assigns number to V value based on length of containing array
 int getButtonId(int rawValue, uint8_t * compareArray, int compareArraySize){
-  
+  delay(25);
   int buttonId = 0;
 
   for(int i = 0; i < compareArraySize; i++){
